@@ -21,9 +21,14 @@ screen = pygame.display.set_mode([500,500])
 
 # set long term variables
 running = True
-circle_pos = 250, 250
+# circle_pos = 250, 250
 #------------------------------------
 
+# set up player image
+playerImg = pygame.image.load('game assets/graphics/tankBody_blue.png')
+playerImg.convert()
+playerRect = playerImg.get_rect()
+playerRect.center = 250, 250
 
 
 #------------------------------------------------------------------------
@@ -42,13 +47,13 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                circle_pos = (circle_pos[0]-10, circle_pos[1])
+                playerRect.center = (playerRect.center[0]-10, playerRect.center[1])
             if event.key == pygame.K_RIGHT:
-                circle_pos = (circle_pos[0]+10, circle_pos[1])
+                playerRect.center = (playerRect.center[0]+10, playerRect.center[1])
             if event.key == pygame.K_UP:
-                circle_pos = (circle_pos[0], circle_pos[1]-10)
+                playerRect.center = (playerRect.center[0], playerRect.center[1]-10)
             if event.key == pygame.K_DOWN:
-                circle_pos = (circle_pos[0], circle_pos[1]+10)
+                playerRect.center = (playerRect.center[0], playerRect.center[1]+10)
             
             
         # and if keydown    
@@ -66,7 +71,10 @@ while running:
     #----------------------------------------------
     # fill background with colour
     screen.fill((255, 255, 255))
-
-    pygame.draw.circle(screen, (125, 125, 125), (circle_pos), 75)
+    #----------------------------------------------
+    # draw everything
+    screen.blit(playerImg, playerRect)
+ 
+   # pygame.draw.circle(screen, (125, 125, 125), (circle_pos), 75)
     
     pygame.display.flip()
