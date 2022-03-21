@@ -16,20 +16,38 @@ import pygame
 pygame.init()
 
 # set up the window we'll use to draw our game
-screen = pygame.display.set_mode([500,500])
+WINDOWWIDTH = 500
+WINDOWHEIGHT = 500
+screen = pygame.display.set_mode([WINDOWWIDTH, WINDOWHEIGHT])
 
 
 # set long term variables
 running = True
 # circle_pos = 250, 250
-#------------------------------------
+#------------------------------------------------------
 
-# set up player image
-playerImg = pygame.image.load('game assets/graphics/player_tank_body_v3.png')
-playerImg.convert()
-playerRect = playerImg.get_rect()
-playerRect.center = 250, 250
+# set up player
 
+position = [WINDOWWIDTH / 2, WINDOWHEIGHT / 2]
+PLAYERSIZE = 50
+player = pygame.Rect(position[0], position[1], PLAYERSIZE, PLAYERSIZE)
+# -----------------------------------------------------
+
+
+
+
+
+
+
+
+#playerImg = pygame.image.load('game assets/graphics/player_tank_body_v3.png')
+#playerImg.convert()
+#playerRect = playerImg.get_rect()
+#playerRect.center = 250, 250
+
+# other graphics
+#green_sandbagImg = pygame.image.load('game assets/graphics/green_sandbag.png')
+#green_sandbagImg = 100, 100
 
 #------------------------------------------------------------------------
 # game loop
@@ -47,13 +65,25 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                playerRect.center = (playerRect.center[0]-10, playerRect.center[1])
+                position[0] -= 10
             if event.key == pygame.K_RIGHT:
-                playerRect.center = (playerRect.center[0]+10, playerRect.center[1])
+                position[0] += 10
             if event.key == pygame.K_UP:
-                playerRect.center = (playerRect.center[0], playerRect.center[1]-10)
+                position[1] -= 10
             if event.key == pygame.K_DOWN:
-                playerRect.center = (playerRect.center[0], playerRect.center[1]+10)
+                position[1] += 10
+
+
+
+        #if event.type == pygame.KEYDOWN:
+            #if event.key == pygame.K_LEFT:
+                #playerRect.center = (playerRect.center[0]-10, playerRect.center[1])
+            #if event.key == pygame.K_RIGHT:
+                #playerRect.center = (playerRect.center[0]+10, playerRect.center[1])
+            #if event.key == pygame.K_UP:
+                #playerRect.center = (playerRect.center[0], playerRect.center[1]-10)
+            #if event.key == pygame.K_DOWN:
+                #playerRect.center = (playerRect.center[0], playerRect.center[1]+10)
             
             
         # and if keydown    
@@ -62,7 +92,8 @@ while running:
     #----------------------------------------------
     # Update
     #----------------------------------------------
-    
+    player.left = position[0]
+    player.top = position[1]
     #----------------------------------------------
 
 
@@ -73,8 +104,33 @@ while running:
     screen.fill((0, 0, 0))
     #----------------------------------------------
     # draw everything
-    screen.blit(playerImg, playerRect)
+    pygame.draw.rect(screen, (125, 125, 125), player)
+
+
+
+
+    #screen.blit(playerImg, playerRect)
  
    # pygame.draw.circle(screen, (125, 125, 125), (circle_pos), 75)
-    
+
+    # Flip the display
     pygame.display.flip()
+    # ---------------------------------------------
+
+
+# END of Game Loop
+# -------------------------------------------------
+
+
+# -------------------------------------------------
+# Program Exit
+# -------------------------------------------------
+pygame.quit()
+# -------------------------------------------------
+
+
+
+
+
+
+
