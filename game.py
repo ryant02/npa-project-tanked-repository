@@ -25,7 +25,7 @@ running = True
 #------------------------------------
 
 # set up player image
-playerImg = pygame.image.load('game assets/graphics/tankBody_blue.png')
+playerImg = pygame.image.load('game assets/graphics/player_tank_body_v3.png')
 playerImg.convert()
 playerRect = playerImg.get_rect()
 playerRect.center = 250, 250
@@ -70,7 +70,7 @@ while running:
     # Draw
     #----------------------------------------------
     # fill background with colour
-    screen.fill((255, 255, 255))
+    screen.fill((0, 0, 0))
     #----------------------------------------------
     # draw everything
     screen.blit(playerImg, playerRect)
